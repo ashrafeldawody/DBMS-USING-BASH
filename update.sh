@@ -1,51 +1,54 @@
 #!/bin/bash
 
 sh "./listTables.sh";
-dbPath="./databases/iti"
-read -p "Enter Table name you want to insert to: " tableName
-if ! [ -f "$dbPath/desc/$tableName" ];then
+read -p "Enter Table name you want to update: " tableName
+tablePath="$dbPath"/"$tableName";
+tableDescPath="$dbPath"/desc/"$tableName";
+
+if ! [ -f "$tableDescPath" ];then
    echo -e "${RED}No Such Table${NC}"
-   sh "./update.sh";
+   exit;
 fi
 
-echo `grep -q "^$colValue" "$dbPath/$tableName"`
-if `grep -q "^$colValue" "$dbPath/$tableName"`; then
-    echo "This $colName Already Exists";
+PK=`awk -F: '{print $1; exit}' $tableDescPath`;
+read -p "Please Enter the $PK(PK) of target record: " PKValue
+
+oldRecord=`grep "^$PKValue:" "$tablePath"`
+newRecord="$PKValue"
+if test -z $oldRecord; then
+    echo "No Record with $PK = $PKValue";
     break;
 fi
-exit;
-row=""
+oldRecord=`echo $oldRecord | cut -d ":" -f 2-`
 
-
-   validRecord=0
-   colName=`echo $line | cut -d":" -f1`
-   colDataType=`echo $line | cut -d":" -f2`
-   colMaxLength=`echo $line | cut -d":" -f3`
+loopCounter=2
+for i in $(echo $oldRecord | sed "s/:/ /g")
+do
+    validRecord="0"
+    colName=`awk -F: -v counter="$loopCounter" 'NR==counter{print $1}' $tableDescPath`
+    colDataType=`awk -F: -v counter="$loopCounter" 'NR==counter{print $2}' $tableDescPath`
+    colMaxLength=`awk -F: -v counter="$loopCounter" 'NR==counter{print $3}' $tableDescPath`
    
-   read -p "$colName($colDataType,Max:$colMaxLength): " colValue
-   #validations
-   if [ "$colDataType" = "number" ] && ! [[ "$colValue" =~ ^[0-9]+$ ]];then
-		echo "$colName only accepts numbers"
-		break;
-   fi
-   if [ "$colDataType" = "string" ] && ! [[ "${colValue}" =~ [a-zA-Z]+ ]];then
-		echo "$colName must atleast conain one letter"
-		break;
-   fi
-   if [ "$counter" -eq 1 ] && `grep -q "^$colValue" "$dbPath/$tableName"`; then
-		echo "This $colName Already Exists";
-		break;
+    read -p "$colName: " -i `echo $oldRecord | cut -d ":" -f $((loopCounter-1))` -e colValue;
+
+    if [ "$colDataType" = "number" ] && ! [[ "$colValue" =~ ^[0-9]+$ ]];then
+        echo "$colName only accepts numbers"
+        break;
+    fi
+    if [ "$colDataType" = "string" ] && ! [[ "${colValue}" =~ [a-zA-Z]+ ]];then
+        echo "$colName must atleast conain one letter"
+        break;
     fi
     if [ `expr length $colValue` -gt "$colMaxLength" ];then
         echo "$colName is too long"
         echo "max length is $colMaxLength"
-		break;
+        break;
     fi
-   row="$row:$colValue"
+    newRecord="$newRecord:$colValue"
+   ((loopCounter=loopCounter+1));
    validRecord="1"
-   ((counter=counter+1));
-
-
+done
    if [ "$validRecord" = "1" ];then
-      echo "${row:1}" >> "$dbPath/$tableName"
+    sed -i "/^$PKValue:/c\\$newRecord" $tablePath
+    echo -e "${GREEN}Record Successfully Updated${NC}"
    fi
