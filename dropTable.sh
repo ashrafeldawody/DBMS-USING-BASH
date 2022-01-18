@@ -1,9 +1,9 @@
 #!/bin/bash
 read -p "Enter table name you want to drop: " tbdrop
-if ! [ -z $tbdrop ] && [ -f "$path/$tbdrop" ]
+if ! [ -z $tbdrop ] && [ -f "$dbPath/$tbdrop" ]
 then
-	rm "$path/$tbdrop"
-	rm "$path/desc/$tbdrop"
+	rm "$dbPath/$tbdrop"
+	rm "$dbPath/desc/$tbdrop"
 	echo "table '$tbdrop' removed successfully!"
 	echo "==========================="
 else

@@ -5,7 +5,7 @@ while [[ $tbname = "" ]]; do
 	read -p "Enter table name: " tbname
 done
 
-if test -f "$path/$tbname"
+if test -f "$dbPath/$tbname"
 then
     echo "Table '$tbname' already exists!"
 	echo "==========================="
@@ -15,8 +15,8 @@ else
 	echo "When you finish write end and press enter";
 	echo -e "${RED}Primary Key Must Be Entered First${NC}";
 
-	touch "$path/$tbname"
-	touch "$path/desc/$tbname"
+	touch "$dbPath/$tbname"
+	touch "$dbPath/desc/$tbname"
 
 	while true
 	do
@@ -45,14 +45,14 @@ else
 			echo "Invalid Max Length. Enter a valid number"
 			continue;
 		fi
-		if `grep -q "^$colName" "$path/desc/$tbname"`; then
+		if `grep -q "^$colName" "$dbPath/desc/$tbname"`; then
 			echo "Column name is already used";
 			continue;
 		fi
-		echo $col >> "$path/desc/$tbname" 
+		echo $col >> "$dbPath/desc/$tbname" 
 	done
 	echo "Table '$tbname' created successfully!"
-	echo "========Table Columns======"
-	cat "$path/desc/$tbname"| column -t -s ":";
-	echo "==========================="
+	echo "========Table Columns======="
+	cat "$dbPath/desc/$tbname"| column -t -s ":";
+	echo "============================"
 fi

@@ -1,10 +1,10 @@
 #!/bin/bash
-COLUMNS=15
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-ORANGE='\033[0;33m'
-BLUE='\033[0;34m'
-NC='\033[0m' # No Color
+export COLUMNS=15
+export RED='\033[0;31m'
+export GREEN='\033[0;32m'
+export ORANGE='\033[0;33m'
+export BLUE='\033[0;34m'
+export NC='\033[0m' # No Color
 
 echo "==========================="
 echo -e "==${RED}Simple DBMS Bash Script${NC}=="
@@ -14,13 +14,13 @@ PS3="Select an option: "
 select command in "Create database" "List databases" "Connect to a database" "Drop a database" "Exit"
 do
 	case "$REPLY" in
-		"1")source "./createDataBase.sh"
+		"1")sh "./createDataBase.sh"
 			;;
-		"2")source "./listDatabases.sh"
+		"2")sh "./listDatabases.sh"
 			;;
-		"3")source "./connectToDatabase.sh"
+		"3")sh "./connectToDatabase.sh"
 			;;
-		"4")source "./dropDatabase.sh"
+		"4")sh "./dropDatabase.sh"
 			;;
 		"5")
 			exit
