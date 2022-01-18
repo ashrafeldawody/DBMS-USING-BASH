@@ -1,0 +1,5 @@
+id:number:11
+name:string:25
+email:string:30
+age:number:3
+password:string:20
