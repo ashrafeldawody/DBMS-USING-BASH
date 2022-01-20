@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sh "./listTables.sh";
+bash "./listTables.sh";
 read -p "Enter Table name you want to update: " tableName
 tablePath="$dbPath"/"$tableName";
 tableDescPath="$dbPath"/desc/"$tableName";

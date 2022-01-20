@@ -1,12 +1,12 @@
 #!/bin/bash
 
-sh "./listTables.sh";
+bash "./listTables.sh";
 
 read -p "Enter Table name you want to select from: " tableName
 
 if [ -z $tableName ] || ! [ -f "$dbPath/desc/$tableName" ];then
     echo -e "${RED}Invalid Table Name${NC}"; 
-    sh "./select.sh";
+    exit;
 fi
 
 header=""
@@ -38,7 +38,7 @@ do
             fi
             echo -e "${RED}===========================${NC}";
 			;;
-		"3")sh "./connectedToDatabase.sh"
+		"3")bash "./connectedToDatabase.sh"
 			;;
 		*) echo "Invalid option!"
 			echo "==========================="

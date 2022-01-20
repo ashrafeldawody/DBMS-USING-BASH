@@ -7,7 +7,7 @@ if [ -d "`pwd`/databases/$dbname" ]
        	echo "database already exists!"
 		echo "==========================="
 	else	
-	       	mkdir "`pwd`/databases/$dbname"
+	    mkdir "`pwd`/databases/$dbname"
 		echo "Database '"$dbname"' created successfully!"
 		echo "==========================="
 	fi

@@ -14,13 +14,13 @@ PS3="Select an option: "
 select command in "Create database" "List databases" "Connect to a database" "Drop a database" "Exit"
 do
 	case "$REPLY" in
-		"1")sh "./createDataBase.sh"
+		"1")bash "./createDataBase.sh"
 			;;
-		"2")sh "./listDatabases.sh"
+		"2")bash "./listDatabases.sh"
 			;;
-		"3")sh "./connectToDatabase.sh"
+		"3")bash "./connectToDatabase.sh"
 			;;
-		"4")sh "./dropDatabase.sh"
+		"4")bash "./dropDatabase.sh"
 			;;
 		"5")
 			exit

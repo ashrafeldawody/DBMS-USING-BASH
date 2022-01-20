@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source "./listDatabases.sh"
+bash "./listDatabases.sh"
 read -p "Name of Database you want to drop: " dbnamedrop
 
 if ! [ -z $dbnamedrop ] && [ -d "./databases/$dbnamedrop" ]
