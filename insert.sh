@@ -5,7 +5,7 @@ source "./listTables.sh";
 read -p "Enter Table name you want to insert to: " tableName
 if ! [ -f "$dbPath/desc/$tableName" ];then
    echo -e "${RED}No Such Table${NC}"
-   bash "./insert.sh";
+   exit;
 fi
 
 row=""

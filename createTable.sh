@@ -1,9 +1,10 @@
 #!/bin/bash
 
 read -p "Enter table name: " tbname
-while [[ $tbname = "" ]]; do
-	read -p "Enter table name: " tbname
-done
+if [[ $tbname = "" ]]; then
+	echo "Table Name Can't be empty";
+	exit;
+fi
 
 if test -f "$dbPath/$tbname"
 then

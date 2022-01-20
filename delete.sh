@@ -6,7 +6,7 @@ read -p "Enter Table name you want to delete from: " tableName
 
 if [ -z $tableName ] || ! [ -f "$dbPath/desc/$tableName" ];then
     echo -e "${RED}Invalid Table Name${NC}"; 
-    bash "./select.sh";
+    exit;
 fi
 
 header=""
