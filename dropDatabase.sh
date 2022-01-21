@@ -1,4 +1,6 @@
 #!/bin/bash
+clear
+echo -e "${ORANGE}======Dropping Database======${NC}";
 
 bash "./listDatabases.sh"
 read -p "Name of Database you want to drop: " dbnamedrop

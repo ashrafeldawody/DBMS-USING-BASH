@@ -1,4 +1,6 @@
 #!/bin/bash
+clear
+echo -e "${ORANGE}======Creating New Database======${NC}";
 read -p "Enter Database Name: " dbname
 
 #checking if the db name exists

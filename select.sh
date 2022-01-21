@@ -1,4 +1,5 @@
 #!/bin/bash
+clear
 
 bash "./listTables.sh";
 
@@ -38,7 +39,7 @@ do
             fi
             echo -e "${RED}===========================${NC}";
 			;;
-		"3")bash "./connectedToDatabase.sh"
+		"3")bash "./databaseMenu.sh"
 			;;
 		*) echo "Invalid option!"
 			echo "==========================="

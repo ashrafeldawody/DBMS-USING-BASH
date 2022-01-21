@@ -1,4 +1,7 @@
 #!/bin/bash
+clear
+echo -e "${ORANGE}======Dropping Table======${NC}";
+
 read -p "Enter table name you want to drop: " tbdrop
 if ! [ -z $tbdrop ] && [ -f "$dbPath/$tbdrop" ]
 then

@@ -1,5 +1,6 @@
 #!/bin/bash
-
+clear
+echo -e "${ORANGE}======Creating New Table======${NC}";
 read -p "Enter table name: " tbname
 if [[ $tbname = "" ]]; then
 	echo "Table Name Can't be empty";

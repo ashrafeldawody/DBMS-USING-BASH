@@ -1,6 +1,8 @@
 #!/bin/bash
+clear
+echo -e "${ORANGE}======Inserting To Table======${NC}";
 
-source "./listTables.sh";
+bash "./listTables.sh";
 
 read -p "Enter Table name you want to insert to: " tableName
 if ! [ -f "$dbPath/desc/$tableName" ];then

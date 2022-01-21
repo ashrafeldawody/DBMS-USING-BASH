@@ -1,4 +1,5 @@
 #!/bin/bash
+clear
 export COLUMNS=15
 export RED='\033[0;31m'
 export GREEN='\033[0;32m'
@@ -22,8 +23,7 @@ do
 			;;
 		"4")bash "./dropDatabase.sh"
 			;;
-		"5")
-			exit
+		"5") exit
 			;;
 		*) echo -e "${RED}Invalid option!${NC}"
 			echo "==========================="

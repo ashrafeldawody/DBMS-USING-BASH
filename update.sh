@@ -1,4 +1,6 @@
 #!/bin/bash
+clear
+echo -e "${ORANGE}======Updating Record======${NC}";
 
 bash "./listTables.sh";
 read -p "Enter Table name you want to update: " tableName
@@ -17,7 +19,7 @@ oldRecord=`grep "^$PKValue:" "$tablePath"`
 newRecord="$PKValue"
 if test -z $oldRecord; then
     echo "No Record with $PK = $PKValue";
-    break;
+    exit;
 fi
 oldRecord=`echo $oldRecord | cut -d ":" -f 2-`
 

@@ -1,4 +1,7 @@
 #!/bin/bash
+clear
+echo -e "${ORANGE}======Database Options======${NC}";
+
 echo -e "${GREEN}Connected To `basename $dbPath`${NC}"
 echo -e "===================================="
 PS3="Select an option: "
@@ -20,7 +23,7 @@ do
                 "7")bash "./update.sh"
                         ;;
                 "8")echo "==========================="
-			bash "./mainMenu.sh"
+			bash "./startDBMS.sh"
                         ;;
                 *) echo "Invalid option!"
 			echo "==========================="
